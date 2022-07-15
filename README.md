@@ -1,3 +1,3 @@
 # CurrencyConverter
 
-![](https://github.com/Go0osee/CurrencyConverter/blob/master/CurrencyConverter.gif)
+![](https://github.com/Go0oseee/CurrencyConverter/blob/master/CurrencyConverter.gif)
