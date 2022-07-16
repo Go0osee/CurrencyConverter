@@ -1,32 +1,22 @@
 package com.go0ose.currencyconverter.presentation.di
 
-import com.go0ose.currencyconverter.domain.CurrencyInteractor
-import com.go0ose.currencyconverter.presentation.mainScreen.MainViewModel
+import androidx.lifecycle.ViewModel
 import com.go0ose.currencyconverter.presentation.mainScreen.pages.FavoriteViewModel
 import com.go0ose.currencyconverter.presentation.mainScreen.pages.PopularViewModel
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import dagger.multibindings.IntoMap
 
 @Module
-class ViewModelModule {
+interface ViewModelModule {
 
-    @Provides
-    fun provideMainViewModel(): MainViewModel {
-        return MainViewModel()
-    }
+    @Binds
+    @IntoMap
+    @ViewModelKey(PopularViewModel::class)
+    fun bindPopularViewModel(popularViewModel: PopularViewModel): ViewModel
 
-    @Provides
-    fun providePopularViewModel(
-        currencyInteractor: CurrencyInteractor
-    ): PopularViewModel {
-        return PopularViewModel(currencyInteractor)
-    }
-
-    @Provides
-    fun provideFavoriteViewModel(
-        currencyInteractor: CurrencyInteractor
-    ): FavoriteViewModel {
-        return FavoriteViewModel(currencyInteractor)
-    }
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavoriteViewModel::class)
+    fun bindFavoriteViewModel(favoriteViewModel: FavoriteViewModel): ViewModel
 }

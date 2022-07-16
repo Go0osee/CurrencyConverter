@@ -6,8 +6,9 @@ import com.go0ose.currencyconverter.utils.toCurrency
 import com.go0ose.currencyconverter.utils.toCurrencyEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class CurrencyInteractorImpl(
+class CurrencyInteractorImpl @Inject constructor(
     private val currencyRepository: CurrencyRepository
 ) : CurrencyInteractor {
 

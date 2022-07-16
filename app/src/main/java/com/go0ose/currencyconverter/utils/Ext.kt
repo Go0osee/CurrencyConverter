@@ -5,12 +5,12 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.animation.AnimationUtils
-import android.widget.ImageButton
-import android.widget.TextClock
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.go0ose.currencyconverter.AppComponent
 import com.go0ose.currencyconverter.R
+import com.go0ose.currencyconverter.presentation.mainScreen.MainActivity
 import com.go0ose.currencyconverter.presentation.model.Sort
 
 fun FragmentActivity.openFragment(container: Int, tag:String, fragment: Fragment){
@@ -64,3 +64,9 @@ fun Fragment.showSortDialog(
 
     alertDialog.show()
 }
+
+val Context.appComponent: AppComponent
+    get() = when (this) {
+        is MainActivity -> appComponent
+        else -> this.applicationContext.appComponent
+    }

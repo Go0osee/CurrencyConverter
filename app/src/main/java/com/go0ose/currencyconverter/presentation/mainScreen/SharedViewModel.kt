@@ -1,15 +1,17 @@
 package com.go0ose.currencyconverter.presentation.mainScreen
 
 import androidx.lifecycle.ViewModel
+import com.go0ose.currencyconverter.domain.CurrencyInteractor
 import com.go0ose.currencyconverter.presentation.model.Rate
 import com.go0ose.currencyconverter.presentation.model.SearchConfiguration
 import com.go0ose.currencyconverter.presentation.model.Sort
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class SharedViewModel : ViewModel() {
 
-    private val _searchConfigurationStateFlow = MutableStateFlow<SearchConfiguration>(SearchConfiguration())
+    private val _searchConfigurationStateFlow = MutableStateFlow(SearchConfiguration())
     val searchConfigurationStateFlow: StateFlow<SearchConfiguration> = _searchConfigurationStateFlow
 
     private val _listRatesStateFlow = MutableStateFlow<List<Rate>>(emptyList())
@@ -23,11 +25,13 @@ class MainViewModel : ViewModel() {
 
 
     fun sortImageClicked(sort: Sort) {
-        _searchConfigurationStateFlow.value = SearchConfiguration(sort, _searchConfigurationStateFlow.value.base)
+        _searchConfigurationStateFlow.value =
+            SearchConfiguration(sort, _searchConfigurationStateFlow.value.base)
     }
 
     fun setBaseCurrency(item: Rate) {
-        _searchConfigurationStateFlow.value = SearchConfiguration(_searchConfigurationStateFlow.value.sort, item.name)
+        _searchConfigurationStateFlow.value =
+            SearchConfiguration(_searchConfigurationStateFlow.value.sort, item.name)
     }
 
     fun setCurrency(listCurrency: List<Rate>) {

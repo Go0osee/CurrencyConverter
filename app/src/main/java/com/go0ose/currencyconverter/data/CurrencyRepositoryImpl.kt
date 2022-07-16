@@ -9,8 +9,9 @@ import com.go0ose.currencyconverter.domain.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class CurrencyRepositoryImpl(
+class CurrencyRepositoryImpl @Inject constructor(
     private val currencyApi: CurrencyApi,
     private val currencyDao: CurrencyDao
 ) : CurrencyRepository {
@@ -22,7 +23,7 @@ class CurrencyRepositoryImpl(
     }
 
     override fun getSavedCurrency(): Flow<List<CurrencyEntity>> {
-            return currencyDao.getAllCurrency()
+        return currencyDao.getAllCurrency()
     }
 
     override suspend fun saveCurrency(cityWeatherEntity: CurrencyEntity) {

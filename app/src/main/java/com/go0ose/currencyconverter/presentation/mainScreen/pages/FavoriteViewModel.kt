@@ -9,8 +9,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavoriteViewModel(
+class FavoriteViewModel @Inject constructor(
     private val currencyInteractor: CurrencyInteractor
 ) : ViewModel() {
 
